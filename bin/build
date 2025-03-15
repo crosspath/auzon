@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative "../lib/auzon/version"
+
+if system("gem build auzon")
+  need_sudo = !File.writable?(Gem.paths.home)
+  file_name = "auzon-#{Auzon::VERSION}.gem"
+  system("#{need_sudo ? "sudo" : ""} gem install #{file_name}")
+end

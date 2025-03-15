@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative "../lib/auzon/version"
+
+version = Auzon::VERSION
+file = "auzon-#{version}.gem"
+warn "File #{file} doesn't exist" unless File.exist?(file) # rubocop:disable Lint/Debugger
+
+if system("gem push #{file}")
+  system("git tag 'v#{version}' && git push origin 'v#{version}' && git push")
+end
