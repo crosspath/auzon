@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-require_relative "auzon/version"
+require "auzon/integration/railtie" if defined?(Rails::Railtie)
 
 # Base code for Rails projects with Clean architecture and Domain-Driven Design.
 module Auzon
-  # Gem methods go here...
+  autoload :Integration, "auzon/integration"
+  autoload :VERSION, "auzon/version"
 end

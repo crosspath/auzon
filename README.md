@@ -31,7 +31,7 @@ gem "auzon", git: "https://github.com/crosspath/auzon"
 Run `bundle install` and then generate code examples and configuration files:
 
 ```shell
-bin/rails g auzon init
+bin/rails g auzon:init
 ```
 
 This command creates directory `domains` in project root for your domain (business logic) files.
@@ -81,8 +81,8 @@ Example structure of directory `domains`:
 ```
 domains
 + base (directory with common files for more than one domain)
-+ site (admin panel and site-wide settings)
-+ users (all entities that describe user data in this application + related functionality)
++ site (directory for admin panel and site-wide settings)
++ users (directory for user data in this application + related functionality)
 | site.rb (adds table_name_prefix for ActiveRecord classes in this namespace)
 | users.rb (the same)
 ```
@@ -103,22 +103,29 @@ Suggested structure of a domain (e.g. `users`):
 forms
 + accounts (directory for group of form objects related to create/delete/update/... user accounts)
 | | create.rb (example file)
+
 jobs
 | deactivate_obsolete_accounts.rb (example file)
+
 mailers (directory for mailers & template files)
 + accounts (directory for template files for accounts.rb)
 | | registered.html.slim (example template file)
 | accounts.rb (example mailer for notifying users about changes in user accounts)
+
 queries
 + accounts (directory for group of query objects related to user accounts entity)
 | | index.rb (example file)
+
 serializers
 | account.rb (definition for serializing user account into Ruby Hash or JSON)
+
 services
 + accounts (directory for group of serice objects related to create/delete/update/... user accounts)
 | | create.rb (example file)
+
 validators
 | unique_email.rb (example file)
+
 account.rb (file with class entity, e.g. for ActiveRecord descendant class)
 ```
 
