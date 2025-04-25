@@ -1,0 +1,16 @@
+Description:
+    Generate code examples and configuration files for DDD & Clean architecture in Rails
+    application.
+
+Example:
+    bin/rails generate auzon:init
+
+    This command:
+
+    This will change:
+        config/application.rb
+
+    This will create:
+        domains/base/{form,job,mailer,model,query_filters,serializer}.rb
+        domains/base/mailers/layout.html.#{format}
+        domains/base/mailers/layout.text.erb

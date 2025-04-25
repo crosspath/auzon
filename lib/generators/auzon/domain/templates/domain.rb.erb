@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+# Common options for models within this domain.
+module <%= module_name %>
+  def self.table_name_prefix
+    "<%= domain %>_"
+  end
+end

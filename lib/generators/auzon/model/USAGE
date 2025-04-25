@@ -1,0 +1,27 @@
+Description:
+    Create database migration, other files & directories for new entity.
+
+Example:
+    bin/rails generate auzon:model NAME ATTRIBUTES ...
+
+    NAME is the name of a model file in format "#{domain}/#{model}". Model name should be given in
+    singular form. Domain name & model name should be given with underscores if needed.
+
+    ATTRIBUTES is a list of model attributes as in Rails generators: migration, model, resource,
+    scaffold.
+
+    Examples:
+
+    bin/rails g auzon:model site/document name author:references
+    bin/rails g auzon:model users/account first_name last_name email:uniq
+
+    This will create:
+        db/migrate/#{timestamp}_create_#{domain}_#{model.pluralize}.rb
+        domains/#{domain}/#{model}.rb
+        domains/#{domain}/forms/#{model.pluralize}/{create,delete,mixins,update}.rb
+        domains/#{domain}/queries/#{model.pluralize}/index.rb
+        domains/#{domain}/mailers/#{model}/example.html.#{format}
+        domains/#{domain}/mailers/#{model}.rb
+        domains/#{domain}/serializers/#{model}.rb
+        domains/#{domain}/services/#{model.pluralize}/{create,delete,mixins,update}.rb
+        #{factories_dir}/#{domain}/#{model OR model.pluralize}.rb

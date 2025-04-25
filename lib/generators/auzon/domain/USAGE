@@ -1,0 +1,15 @@
+Description:
+    Create directory with typical structure for a domain.
+
+Example:
+    bin/rails generate auzon:domain NAME ...
+
+    You may input more than one domain name (here: NAME). Domain name should be given with
+    underscores if needed.
+
+    Example:
+        bin/rails generate auzon:domain site
+
+    This will create:
+        domains/site/{forms,jobs,mailers,queries,serializers,services,validators}/
+        domains/site.rb

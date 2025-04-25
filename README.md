@@ -34,17 +34,22 @@ Run `bundle install` and then generate code examples and configuration files:
 bin/rails g auzon:init
 ```
 
-This command creates directory `domains` in project root for your domain (business logic) files.
+This command:
+
+1. Adds application configuration for domains.
+2. Creates directory `domains` in project root for your domain (business logic) files.
+3. Creates example files for "base" files (model, serializer, etc).
 
 Also you may use these generators:
 
 1. Create directory with typical structure for a domain.
 
     ```shell
-    bin/rails g auzon:domain ...
+    bin/rails g auzon:domain NAME ...
     ```
 
-    You may input more than one domain name. Domain name should be given with underscores if needed.
+    You may input more than one domain name (here: NAME). Domain name should be given with
+    underscores if needed.
 
     Example:
 
@@ -55,15 +60,19 @@ Also you may use these generators:
 2. Create database migration, other files & directories for new entity.
 
     ```shell
-    bin/rails g auzon:model ...
+    bin/rails g auzon:model NAME ATTRIBUTES ...
     ```
 
-    You may input more than one word separated by space. Each word has format `#{domain}/#{model}`. Model name should be given in singular form. Domain name & model name should be given with underscores if needed.
+    NAME is the name of a model file in format `#{domain}/#{model}`. Model name should be given in singular form. Domain name & model name should be given with underscores if needed.
 
-    Example:
+    ATTRIBUTES is a list of model attributes as in Rails generators: migration, model, resource,
+    scaffold.
+
+    Examples:
 
     ```shell
-    bin/rails g auzon:model site/document users/account
+    bin/rails g auzon:model site/document name author:references
+    bin/rails g auzon:model users/account first_name last_name email:uniq
     ```
 
     This generator creates files:
@@ -71,8 +80,8 @@ Also you may use these generators:
     * migration file
     * model file (ActiveRecord)
     * form objects files
-    * query objects files
-    * serializer files
+    * query object files
+    * serializer file
     * service objects files
     * factory file (Factory Bot)
 
