@@ -5,6 +5,7 @@ gemspec
 
 # Turn off warnging: %{gem} was loaded from the standard library,
 # but will no longer be part of the default gems starting from Ruby 3.5.0
+gem "irb"
 gem "rdoc"
 
 gem "prism" # For parser_prism in Rubocop.
