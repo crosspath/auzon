@@ -21,10 +21,10 @@ module Auzon
 
     private
 
-    # @param attribute [Symbol, String]
+    # @param attribute [Symbol | String]
     # @param message [String]
     # @return [false]
-    def add_error(attribute, message)
+    def add_error(attribute, message) # rubocop:disable Naming/PredicateMethod
       errors.add(attribute, message:)
       false
     end

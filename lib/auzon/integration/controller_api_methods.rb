@@ -49,7 +49,7 @@ module Auzon
       # @example
       #   accounts = Users::Account.all.to_a
       #   count = accounts.size
-      #   render_objects(Users::Serializers::Account, objects: accounts, total: count, url_options:)
+      #   render_objects(Users::Serializers::Account, objects: accounts, total: count)
       # @param serializer [Blueprinter::Base]
       # @param objects [Array] Array of objects for serialization
       # @param total [Integer] Total amount of existing records (may be more than `objects.size`)
@@ -71,9 +71,9 @@ module Auzon
       # @example
       #   serialize_result(Users::Serializers::Account, [current_user], jwt: form.jwt)
       # @param serializer [Blueprinter::Base]
-      # @param result [Object, Array<Object>] Object or array of objects for serialization
+      # @param result [Object | Array<Object>] Object or array of objects for serialization
       # @param kwargs [Hash] Options for serializer
-      # @return [Hash]
+      # @return [Hash | Array<Hash>] Returns Array if result is Array, otherwise returns Hash
       def serialize_result(serializer, result, **kwargs)
         serializer.render_as_hash(result, current_user:, url_options:, **kwargs)
       end

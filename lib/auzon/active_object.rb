@@ -8,7 +8,7 @@ module Auzon
 
     class << self
       # @param params [ActionController::Parameters]
-      # @param options [Hash<Symbol | String, Object>] Extra arguments for initializer
+      # @param options [Hash<Symbol | String | Object>] Extra arguments for initializer
       # @return [Base::ActiveObject] Instance of this class
       def new_from_params(params, **options)
         attr_names = attribute_names.map(&:to_sym) - Auzon.config.skip_attributes_from_params
@@ -20,7 +20,7 @@ module Auzon
 
       # @param params [ActionController::Parameters]
       # @param attribute_names [Array<Symbol>]
-      # @return [Hash<Symbol, Object>]
+      # @return [Hash<Symbol | Object>]
       def params_values(params, attribute_names)
         hash = params.send(:parameters).to_hash # rubocop:disable Style/Send
 

@@ -11,7 +11,7 @@ class Base::Serializer < Blueprinter::Base
 
   # @param attachment [ActiveStorage::Attached::One]
   # @param url_options [Hash]
-  # @return [nil, String]
+  # @return [nil | String]
   def self.link_to_attachment(attachment, url_options)
     return if !attachment.attached?
 

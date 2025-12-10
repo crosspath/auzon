@@ -34,7 +34,7 @@ module Auzon
       @values = values
     end
 
-    # @return [Arel::Nodes::NodeExpression, nil]
+    # @return [Arel::Nodes::NodeExpression | nil]
     def to_arel
       arel_expressions.reduce { |acc, el| acc.and(el) }
     end
@@ -49,7 +49,7 @@ module Auzon
       @values.filter_map { |key, val| expression_for_filter(arel, filters[key], key, val) }
     end
 
-    # @param arel
+    # @param arel [Arel::Table]
     # @param filter [Base::FiltersTemplate::FilterConfiguration]
     # @param key [Symbol]
     # @param val [Object]

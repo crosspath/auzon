@@ -13,7 +13,7 @@ module Auzon
       #   preload_records([current_user], {posts: :comments})
       #   preload_records([current_user], [:contacts, {posts: :comments}])
       # @param source [Array<Base::Model>]
-      # @param associations [Array<Symbol>]
+      # @param associations [Symbol | String | Array<Symbol> | Hash]
       # @return [void]
       def preload_records(source, associations)
         ActiveRecord::Associations::Preloader.new(records: source, associations:).call

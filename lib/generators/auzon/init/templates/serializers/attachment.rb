@@ -24,7 +24,7 @@ class Base::Serializers::Attachment
 
   private_constant :IN_MEGABYTES, :VIEWABLE_TYPES
 
-  # @param attachment_variant [ActiveStorage::Attached::One, ActiveStorage::VariantWithRecord]
+  # @param attachment_variant [ActiveStorage::Attached::One | ActiveStorage::VariantWithRecord]
   # @return [String]
   def attachment_url(attachment_variant)
     @url_helpers.rails_storage_proxy_url(attachment_variant, **@url_options)
@@ -60,7 +60,7 @@ class Base::Serializers::Attachment
     hash.sort_by(&:first).to_h
   end
 
-  # @return [String, nil]
+  # @return [String | nil]
   def thumbnail_url
     attachment_settings = @attachment.record.attachment_reflections[@attachment.name]
     return if attachment_settings.nil? || !attachment_settings.named_variants.key?(:thumb)
