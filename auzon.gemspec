@@ -15,9 +15,9 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency("rspec-core", "~> 3.13")
   spec.add_development_dependency("rspec-expectations", "~> 3.13")
-  spec.add_development_dependency("rubocop", "~> 1.66")
-  spec.add_development_dependency("rubocop-performance", "~> 1.22")
-  spec.add_development_dependency("rubocop-rails", "~> 2.30.3")
+  spec.add_development_dependency("rubocop", "~> 1.81")
+  spec.add_development_dependency("rubocop-performance", "~> 1.26")
+  spec.add_development_dependency("rubocop-rails", "~> 2.33")
   spec.add_development_dependency("yard", "~> 0.9")
 
   spec.metadata["homepage_uri"] = spec.homepage
