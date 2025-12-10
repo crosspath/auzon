@@ -13,8 +13,12 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = Gem::Requirement.new(">= 3.3.0")
 
+  spec.add_dependency("actionpack", ">= 8")
+  spec.add_dependency("activerecord", ">= 8")
+
   spec.add_development_dependency("rspec-core", "~> 3.13")
   spec.add_development_dependency("rspec-expectations", "~> 3.13")
+  spec.add_development_dependency("rspec-mocks", "~> 3.13")
   spec.add_development_dependency("rubocop", "~> 1.81")
   spec.add_development_dependency("rubocop-performance", "~> 1.26")
   spec.add_development_dependency("rubocop-rails", "~> 2.33")
