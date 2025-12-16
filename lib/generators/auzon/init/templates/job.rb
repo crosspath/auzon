@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Base class for async jobs.
-class Base::Job < ActiveJob::Base # rubocop:disable Rails/ApplicationJob
+class Base::Job < ActiveJob::Base
   # Automatically retry jobs that encountered a deadlock
   # retry_on ActiveRecord::Deadlocked
 
