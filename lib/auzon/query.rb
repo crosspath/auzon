@@ -3,18 +3,24 @@
 module Auzon
   # Base class for retrieving and aggregating records from database.
   class Query < ActiveObject
+    include Auzon::PreloaderHelper
+
     concern :Filterable do
       included do
         attribute :filters # Hash<Symbol, Object>
 
         private
 
-        # @param scope [ActiveRecord::Relation]
+        # @param scope [Class(ActiveRecord::Base) | ActiveRecord::Relation]
         # @param filters_class [Class(Auzon::FiltersTemplate)]
-        # @param model_class [Class(Auzon::Model)]
+        # @param model_class [Class(ActiveRecord::Base) | nil] Optional
         # @return [ActiveRecord::Relation]
-        def apply_filters(scope, filters_class, model_class)
+        def apply_filters(scope, filters_class, model_class = nil)
+          scope = scope.all if scope.is_a?(ActiveRecord::Base)
           return scope if filters.blank?
+
+          model_class ||= scope.model if scope.respond_to?(:model)
+          raise ArgumentError, "Please specify `model_class`" if model_class.nil?
 
           conditions = filters_class.new(model_class, filters).to_arel
 
@@ -40,7 +46,7 @@ module Auzon
       private_constant :NOT_SET
 
       # @param scope [ActiveRecord::Relation]
-      # @return [Hash {objects: Array<Base::Model>, total: Integer}]
+      # @return [Hash {objects: Array<Class(ActiveRecord::Base)>, total: Integer}]
       def paginate(scope)
         objects = scope.limit(limit).offset(offset).to_a
         total = select_all_records? ? objects.size : scope.reselect(nil).count
@@ -64,15 +70,6 @@ module Auzon
           search&.gsub!(/%|\?/) { |char| "\\#{char}" } # Replace special characters for LIKE/ILIKE.
         end
       end
-    end
-
-    private
-
-    # @param source [Array<Base::Model>]
-    # @param associations [Array<Symbol>]
-    # @return [void]
-    def preload_records(source, associations)
-      ActiveRecord::Associations::Preloader.new(records: source, associations:).call
     end
   end
 end

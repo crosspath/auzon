@@ -2,22 +2,9 @@
 
 module Auzon
   module Integration
-    # Helper methods for API controllers.
+    # Helper methods for controllers.
     module ControllerMethods
-      private
-
-      # Fetch associated records from database. Useful for "strict loading".
-      # @see ActiveRecord::Associations::Preloader
-      # @example
-      #   preload_records([current_user], :contacts)
-      #   preload_records([current_user], {posts: :comments})
-      #   preload_records([current_user], [:contacts, {posts: :comments}])
-      # @param source [Array<Base::Model>]
-      # @param associations [Symbol | String | Array<Symbol> | Hash]
-      # @return [void]
-      def preload_records(source, associations)
-        ActiveRecord::Associations::Preloader.new(records: source, associations:).call
-      end
+      include Auzon::PreloaderHelper
     end
   end
 end

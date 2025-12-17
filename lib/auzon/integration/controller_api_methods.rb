@@ -6,20 +6,18 @@ module Auzon
     module ControllerApiMethods
       private
 
-      # Run `form.call` and then execute code block if form result is successful,
-      # otherwise render errors from form.
+      # Run `obj.call` and then execute code block if obj result is successful,
+      # otherwise render errors from obj.
       # @example
-      #   form = Users::Forms::Accounts::Create.new_from_params(params[:account])
-      #   call_form_and_then(form) do |_form|
-      #     render_object(Users::Serializers::Account, form.object)
-      #   end
-      #   # Here `form` passed into block as `_form`.
-      # @param form [Base::Form]
-      # @yieldparam form [Base::Form]
+      #   obj = Users::Forms::Accounts::Create.new_from_params(params[:account])
+      #   call_and_then(obj) { |_obj| render_object(Users::Serializers::Account, obj.object) }
+      #   # Here `obj` passed into block as `_obj`.
+      # @param obj [Base::ActiveObject]
+      # @yieldparam obj [Base::ActiveObject]
       # @yieldreturn [void]
       # @return [void]
-      def call_form_and_then(form)
-        form.call.success? ? yield(form) : render_error(errors: form.errors)
+      def call_and_then(obj)
+        obj.call.success? ? yield(obj) : render_error(errors: obj.errors)
       end
 
       # Return response with error objects.
@@ -62,10 +60,11 @@ module Auzon
       # Return response with error objects, but with successful status.
       # @example
       #   render_warning(errors: form.errors)
+      # @param message [String]
       # @param errors [Hash-like] Errors in form: `{attribute: ["message"]}`
       # @return [void]
-      def render_warning(errors:)
-        render json: {warning: {errors:}}, status: :accepted
+      def render_warning(message: "", errors: nil)
+        render json: {warning: {errors:, message:}}, status: :accepted
       end
 
       # @example

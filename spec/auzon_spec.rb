@@ -30,6 +30,7 @@ RSpec.describe "Auzon" do
         end
       end
 
+      # rubocop:disable Style/SymbolProc -- this rule makes this test worse to read
       context "with unknown parameter names" do
         it "raises error" do
           expect do
@@ -37,6 +38,7 @@ RSpec.describe "Auzon" do
           end.to raise_error(NoMethodError)
         end
       end
+      # rubocop:enable Style/SymbolProc
     end
   end
 end

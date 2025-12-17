@@ -8,10 +8,8 @@ module Auzon
   autoload :Config, "auzon/config"
   autoload :FiltersTemplate, "auzon/filters_template"
   autoload :Integration, "auzon/integration"
-  autoload :Mailer, "auzon/mailer"
-  autoload :Model, "auzon/model"
+  autoload :PreloaderHelper, "auzon/preloader_helper"
   autoload :Query, "auzon/query"
-  autoload :Serializer, "auzon/serializer"
   autoload :Service, "auzon/service"
   autoload :VERSION, "auzon/version"
 
