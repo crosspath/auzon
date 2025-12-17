@@ -12,6 +12,9 @@ AllCops:
 Gemspec/DevelopmentDependencies:
   Enabled: false
 
+Layout/EmptyComment:
+  Enabled: false
+
 Lint/Debugger:
   DebuggerMethods:
     # Exclude "puts" from this list.
